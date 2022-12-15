@@ -7,6 +7,8 @@ import java.util.EnumMap;
 import java.util.List;
 
 public class ResultMaker {
+    private static final int PRICE_PER_LOTTO = 1_000;
+
     // TODO :ResultRepository로 만들어서 결과 저장하고 있게 해도 될듯 & 미리 초기화 작업 해야하고, 메소드두개에서 쓰니까
     public EnumMap<WinningStandard, Integer> getStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         EnumMap<WinningStandard, Integer> rankCount = new EnumMap<>(WinningStandard.class);
@@ -27,7 +29,13 @@ public class ResultMaker {
         return rankCount;
     }
 
-    public float getReturnRate(int size, EnumMap<WinningStandard, Integer> resultStatistics) {
-        return 0;
+    public double getReturnRate(int lottoCount, EnumMap<WinningStandard, Integer> resultStatistics) {
+        int payment = lottoCount * PRICE_PER_LOTTO;
+        int totalPrize = resultStatistics.keySet().stream()
+                .map(rank -> rank.getAmount() * resultStatistics.get(rank))
+                .reduce(0, Integer::sum);
+        double rate = ((double) totalPrize / (double) payment) * 100;
+        System.out.println((double) totalPrize / (double) payment);
+        return Math.round(rate * 10) / 10.0;
     }
 }

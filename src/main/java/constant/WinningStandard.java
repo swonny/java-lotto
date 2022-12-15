@@ -13,12 +13,12 @@ public enum WinningStandard {
     FIRST_PRIZE(6, "2,000,000,000원", false);
 
     private final int sameNumberCount;
-    private final String winningAmount;
+    private final String winningAmountOutput;
     private final boolean hasBonus;
 
-    WinningStandard(int sameNumberCount, String winningAmount, boolean hasBonus) {
+    WinningStandard(int sameNumberCount, String winningAmountOutput, boolean hasBonus) {
         this.sameNumberCount = sameNumberCount;
-        this.winningAmount = winningAmount;
+        this.winningAmountOutput = winningAmountOutput;
         this.hasBonus = hasBonus;
     }
 
@@ -42,7 +42,14 @@ public enum WinningStandard {
         return this.sameNumberCount;
     }
 
-    public String getAmount() {
-        return this.winningAmount;
+    public String getAmountOutput() {
+        return this.winningAmountOutput;
+    }
+
+    public int getAmount() {
+        // TODO : 변수 자료형 변경하기
+        String amount = this.winningAmountOutput.replace(",", "");
+        String amount2 = amount.replace("원", "");
+        return Integer.valueOf(amount2);
     }
 }

@@ -63,7 +63,7 @@ public class OutputView {
                         printResultFormat(
                                 RESULT_FORMAT,
                                 integerToString(winningStandard.getSameNumber()),
-                                winningStandard.getAmount(),
+                                winningStandard.getAmountOutput(),
                                 integerToString(result.get(winningStandard)))
                 );
     }
@@ -73,7 +73,7 @@ public class OutputView {
         printNewLine();
     }
 
-    public static void printReturnRate(float returnRate) {
+    public static void printReturnRate(double returnRate) {
         System.out.printf(RETURN_RATE, returnRate);
     }
 }

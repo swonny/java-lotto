@@ -28,7 +28,7 @@ public class LottoController {
         int bonusNumber = getBonusNumber(winningNumbers, InputView.readBonusNumbers());
         EnumMap<WinningStandard, Integer> resultStatistics = resultMaker.getStatistics(lottos, winningNumbers, bonusNumber);
         OutputView.printResultStatistics(resultStatistics);
-        float returnRate = resultMaker.getReturnRate(lottos.size(), resultStatistics);
+        double returnRate = resultMaker.getReturnRate(lottos.size(), resultStatistics);
         OutputView.printReturnRate(returnRate);
     }
 

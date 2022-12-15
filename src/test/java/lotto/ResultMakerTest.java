@@ -47,4 +47,17 @@ class ResultMakerTest {
         EnumMap<WinningStandard, Integer> rankCount = resultMaker.getStatistics(lottos, winningNumbers, bonusNumber);
         System.out.println(rankCount);
     }
+
+    @Test
+    public void testResultMaker_수익률계산() {
+        EnumMap<WinningStandard, Integer> rankCount = new EnumMap<>(WinningStandard.class);
+        rankCount.put(WinningStandard.FIFTH_PRIZE, 0);
+        rankCount.put(WinningStandard.SECOND_PRIZE, 0);
+        rankCount.put(WinningStandard.THIRD_PRIZE, 0);
+        rankCount.put(WinningStandard.FOURTH_PRIZE, 0);
+        rankCount.put(WinningStandard.FIFTH_PRIZE, 1);
+
+        ResultMaker resultMaker = new ResultMaker();
+        System.out.println(resultMaker.getReturnRate(3, rankCount));
+    }
 }
