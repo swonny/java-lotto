@@ -1,11 +1,13 @@
 package controller;
 
+import constant.WinningStandard;
 import lotto.Lotto;
 import lotto.LottoGenerator;
 import lotto.ResultMaker;
 import view.InputView;
 import view.OutputView;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +26,7 @@ public class LottoController {
         // TODO : 당첨번호, 보너스번호 숫자 범위 유효성검사
         List<Integer> winningNumbers = getWinningNumbers(InputView.readWinningNumbers());
         int bonusNumber = getBonusNumber(winningNumbers, InputView.readBonusNumbers());
-        List<String> resultStatistics = resultMaker.getStatistics(winningNumbers, bonusNumber);
+        EnumMap<WinningStandard, Integer> resultStatistics = resultMaker.getStatistics(lottos, winningNumbers, bonusNumber);
         OutputView.printResultStatistics(resultStatistics);
         float returnRate = resultMaker.getReturnRate(lottos.size(), resultStatistics);
         OutputView.printReturnRate(returnRate);

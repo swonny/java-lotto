@@ -4,6 +4,7 @@ import constant.WinningStandard;
 import lotto.Lotto;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 
 import static constant.ViewMessage.*;
@@ -53,7 +54,7 @@ public class OutputView {
         println(READ_BONUS_NUMBER);
     }
 
-    public static void printResultStatistics(List<String> result) {
+    public static void printResultStatistics(EnumMap<WinningStandard, Integer> result) {
         printNewLine();
         println(RESULT_TITLE);
         println(RESULT_DELIMITER);
@@ -61,9 +62,9 @@ public class OutputView {
                 .forEach(winningStandard ->
                         printResultFormat(
                                 RESULT_FORMAT,
-                                winningStandard.getSameNumber(),
+                                integerToString(winningStandard.getSameNumber()),
                                 winningStandard.getAmount(),
-                                result.remove(0))
+                                integerToString(result.get(winningStandard)))
                 );
     }
 
