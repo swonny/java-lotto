@@ -64,14 +64,6 @@ public class OutputView {
             }
             printFormat(SECOND_PRIZE_RESULT_FORMAT, integerToString(result.get(rank)));
         }
-        Arrays.stream(WinningStandard.values())
-                .forEach(winningStandard ->
-                        printResultFormat(
-                                RESULT_FORMAT,
-                                integerToString(winningStandard.getSameNumber()),
-                                winningStandard.getAmountOutput(),
-                                integerToString(result.get(winningStandard)))
-                );
     }
 
     private static void printResultFormat(String resultFormat, String sameNumbers, String amount, String count) {
