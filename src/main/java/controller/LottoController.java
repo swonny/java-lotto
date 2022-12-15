@@ -34,7 +34,6 @@ public class LottoController {
 
     private List<Lotto> generateLottos(LottoGenerator lottoGenerator) {
         try {
-            // TODO : 다시 입려받도록 구현했음 -> 종료시키게 바꿔보기
             int payment = getPayment(InputView.readPayment());
             return lottoGenerator.generate(payment);
         } catch (IllegalArgumentException exception) {
