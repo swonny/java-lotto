@@ -30,6 +30,17 @@ public class LottoController {
         OutputView.printReturnRate(returnRate);
     }
 
+    private List<Lotto> generateLottos(LottoGenerator lottoGenerator) {
+        try {
+            // TODO : 다시 입려받도록 구현했음 -> 종료시키게 바꿔보기
+            int payment = getPayment(InputView.readPayment());
+            return lottoGenerator.generate(payment);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printExceptionMessage(exception);
+            return generateLottos(lottoGenerator);
+        }
+    }
+
     private int getBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
         // TODO : 위닝, 보너스 중복 합쳐서 한번에 해도 될듯
         try {
@@ -89,17 +100,6 @@ public class LottoController {
     private List<String> split(String winningNumbers) {
         // TODO : ',' 없는 것에 대한 validate 추가해보기
         return List.of(winningNumbers.split(","));
-    }
-
-    private List<Lotto> generateLottos(LottoGenerator lottoGenerator) {
-        try {
-            // TODO : 다시 입려받도록 구현했음 -> 종료시키게 바꿔보기
-            int payment = getPayment(InputView.readPayment());
-            return lottoGenerator.generate(payment);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printExceptionMessage(exception);
-            return generateLottos(lottoGenerator);
-        }
     }
 
     private int getPayment(String payment) {
