@@ -41,6 +41,18 @@ public class LottoController {
         }
     }
 
+    private List<Integer> getWinningNumbers(String winningNumbers) {
+        try {
+            List<String> splitNumbers = split(winningNumbers);
+            // TODO : 로또 서비스 만들어서 예외처리하ㅡㄴ 게 좋을듯
+            validateWinningNumbers(splitNumbers);
+            return splitNumbers.stream().map(Integer::valueOf).collect(Collectors.toList());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printExceptionMessage(exception);
+            return getWinningNumbers(InputView.readWinningNumbers());
+        }
+    }
+
     private int getBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
         // TODO : 위닝, 보너스 중복 합쳐서 한번에 해도 될듯
         try {
@@ -63,18 +75,6 @@ public class LottoController {
     private void validateNumericOnly(String bonusNumber) {
         if (!bonusNumber.matches("[0-9]+")) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
-        }
-    }
-
-    private List<Integer> getWinningNumbers(String winningNumbers) {
-        try {
-            List<String> splitNumbers = split(winningNumbers);
-            // TODO : 로또 서비스 만들어서 예외처리하ㅡㄴ 게 좋을듯
-            validateWinningNumbers(splitNumbers);
-            return splitNumbers.stream().map(Integer::valueOf).collect(Collectors.toList());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printExceptionMessage(exception);
-            return getWinningNumbers(InputView.readWinningNumbers());
         }
     }
 
