@@ -8,6 +8,7 @@ public class ViewMessage {
     public static final String RESULT_TITLE = "당첨 통계";
     public static final String RESULT_DELIMITER = "---";
     public static final String RESULT_FORMAT = "%s개 일치 (%s) - %s개";
+    public static final String SECOND_PRIZE_RESULT_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개";
     public static final String RETURN_RATE = "총 수익률은 %,.1f%%입니다.";
 }
 

@@ -58,6 +58,12 @@ public class OutputView {
         printNewLine();
         println(RESULT_TITLE);
         println(RESULT_DELIMITER);
+        for (WinningStandard rank : WinningStandard.values()) {
+            if (!WinningStandard.SECOND_PRIZE.equals(rank)) {
+                printResultFormat(RESULT_FORMAT, integerToString(rank.getSameNumber()), rank.getAmountOutput(),integerToString(result.get(rank)));
+            }
+            printFormat(SECOND_PRIZE_RESULT_FORMAT, integerToString(result.get(rank)));
+        }
         Arrays.stream(WinningStandard.values())
                 .forEach(winningStandard ->
                         printResultFormat(

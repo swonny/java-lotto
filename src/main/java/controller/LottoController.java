@@ -23,7 +23,6 @@ public class LottoController {
     public void run() {
         List<Lotto> lottos = generateLottos(new LottoGenerator());
         OutputView.printGeneratedLottos(lottos);
-        // TODO : 당첨번호, 보너스번호 숫자 범위 유효성검사
         List<Integer> winningNumbers = getWinningNumbers(InputView.readWinningNumbers());
         int bonusNumber = getBonusNumber(winningNumbers, InputView.readBonusNumbers());
         EnumMap<WinningStandard, Integer> resultStatistics = resultMaker.getStatistics(lottos, winningNumbers, bonusNumber);
@@ -45,7 +44,6 @@ public class LottoController {
     private List<Integer> getWinningNumbers(String winningNumbers) {
         try {
             List<String> splitNumbers = split(winningNumbers);
-            // TODO : 로또 서비스 만들어서 예외처리하ㅡㄴ 게 좋을듯
             validateWinningNumbers(splitNumbers);
             return splitNumbers.stream().map(Integer::valueOf).collect(Collectors.toList());
         } catch (IllegalArgumentException exception) {
@@ -55,7 +53,6 @@ public class LottoController {
     }
 
     private int getBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
-        // TODO : 위닝, 보너스 중복 합쳐서 한번에 해도 될듯
         try {
             validateNumericOnly(bonusNumber);
             int numericBonusNumber = Integer.valueOf(bonusNumber);
@@ -114,13 +111,8 @@ public class LottoController {
     }
 
     private void validatePayment(String payment) {
-        // TODO : 금액 범위 지정해보기
-        // TODO : 0원 안 받게 payment 예외 클래스 추가해보기
-        // TODO : 0원 상수처리
         if (!payment.matches("[0-9]+") || payment.equals("0")) {
             throw new IllegalArgumentException("0원을 입력할 수 없으며, 숫자만 입력할 수 있습니다.");
         }
     }
-
-
 }
